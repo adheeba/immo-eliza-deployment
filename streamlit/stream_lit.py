@@ -2,12 +2,12 @@ import streamlit as st
 import pandas as pd
 import requests
 import json
-
+st.set_page_config(layout="wide")
 st.title('Immo Eliza Property Price Predictor')
 
-st.write("Provide the property details you want to predict the price")
+st.subheader("Provide the property details to predict the price")
 
-type_of_property = st.selectbox('What is the type of your property', ('UNKNOWN','HOUSE', 'APARTMENT'))
+type_of_property = st.selectbox('What is the type of your property?', placeholder='Choose an option', options=('UNKNOWN','HOUSE', 'APARTMENT'))
 
 subtype_of_property = st.selectbox('What is the sub type of your property', ('HOUSE' ,'EXCEPTIONAL_PROPERTY', 'FARMHOUSE' ,'APARTMENT' ,'TOWN_HOUSE',
  'VILLA', 'CASTLE', 'APARTMENT_BLOCK', 'GROUND_FLOOR' ,'CHALET' ,'PENTHOUSE',
