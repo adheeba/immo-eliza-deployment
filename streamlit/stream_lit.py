@@ -15,6 +15,7 @@ subtype_of_property = st.selectbox('What is the sub type of your property', ('HO
  'FLAT_STUDIO', 'SERVICE_FLAT', 'MANOR_HOUSE', 'LOFT', 'OTHER_PROPERTY',
  'TRIPLEX', 'KOT'))
 number_of_rooms = st.slider("Number of rooms", 0, 100,1)
+number_of_rooms = "1"
 living_area = st.slider("Living area in m2", 0, 100000,50)
 
 furnished = st.selectbox('Furnished', ('YES','NO'))
@@ -53,13 +54,16 @@ property = {
 }
 #st.button('Predict', key=1)
 json_data = json.dumps(property)
-
+print(json_data)
 base_url = 'https://immo-eliza-deployment-a02a.onrender.com/'
+#base_url = 'http://127.0.0.1:8000'
 endpoint = 'property_info'
 if st.button('Predict'):
     response = requests.get(base_url)
     if response.status_code == 200:
-        st.write(response.content)
-    result = requests.post(url='https://immo-eliza-deployment-a02a.onrender.com/property_info', data=json_data)
-    if result.status_code == 200:
-        st.write(result.content)
+        #st.success(response.content)
+      result = requests.post(url=f'{base_url}/{endpoint}', data=json_data)
+      if result.status_code == 200:
+          st.markdown(f"### Predicted price for your property is € {result.json()['price']}")
+      else:
+          st.error(result.json())
