@@ -15,7 +15,7 @@ subtype_of_property = st.selectbox('What is the sub type of your property', ('HO
  'FLAT_STUDIO', 'SERVICE_FLAT', 'MANOR_HOUSE', 'LOFT', 'OTHER_PROPERTY',
  'TRIPLEX', 'KOT'))
 number_of_rooms = st.slider("Number of rooms", 0, 100,1)
-number_of_rooms = "1"
+
 living_area = st.slider("Living area in m2", 0, 100000,50)
 
 furnished = st.selectbox('Furnished', ('YES','NO'))
@@ -54,7 +54,6 @@ property = {
 }
 #st.button('Predict', key=1)
 json_data = json.dumps(property)
-print(json_data)
 base_url = 'https://immo-eliza-deployment-a02a.onrender.com/'
 #base_url = 'http://127.0.0.1:8000'
 endpoint = 'property_info'
